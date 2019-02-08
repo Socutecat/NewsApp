@@ -55,7 +55,7 @@ class NewsUI {
         <div class="col s12"> 
             <div class="card">
                 <div class="card-content">
-                    <span class="card-title">No data available</span>
+                    <span class="card-title">Not Found</span>
                 </div>
             </div>
         </div>`
