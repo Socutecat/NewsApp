@@ -6,10 +6,11 @@ const form = document.forms['newsControlForm'];
 const countrySelect = form['country'];
 const categorySelect = form['category'];
 const inputSelect = form['search'];
+const submitSelect = form['submit']
 
 function onSelectChange(event) {
     const country = countrySelect.value;
-    const category = categorySelect.value
+    const category = categorySelect.value;
     
 
     if (!country || !category) return console.error('Введите страну и категорию для поиска');
@@ -32,8 +33,7 @@ function onSelectChange(event) {
 function onInputChange(event) {
     const select = inputSelect.value;
 
-    if (select.length <= 3 ) return console.error('Количество символов должно быть больше 3');
-       uiService.clearContainer();
+    if (select.length <= 3 ) return console.error('Количество набранных символов должно быть больше 3');
 
     newsService.getNewsByPhrase(select, (response) => {
         const {totalResults, articles} = response;
@@ -46,10 +46,19 @@ function onInputChange(event) {
          }
          // console.time();
          articles.forEach((article) => uiService.addArticle(article));
-         // console.timeEnd();
+         // console.timeEnd();    
     })
-    
+    if (!select) uiService.clearContainer();  
 };
+
+// form.addEventListener('submit', (e) => {
+//     e.preventDefault();
+
+//     if (inputSelect.value) {
+//         getNewsByPhrase();
+//     }
+// });
+
 
 countrySelect.addEventListener('change', onSelectChange);
 categorySelect.addEventListener('change', onSelectChange);

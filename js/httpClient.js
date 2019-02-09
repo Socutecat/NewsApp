@@ -18,11 +18,4 @@ class HttpClient {
      * @param {any} data
      * @param {Function} callback
      */
-    post(url, data, callback) {
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', url);
-        xhr.setRequestHeader('Content-type', 'application/json');
-        xhr.send(data);
-        xhr.addEventListener('load', () => callback(xhr.responseText));
-    }
 }
