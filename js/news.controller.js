@@ -33,22 +33,33 @@ function onSelectChange(event) {
 function onInputChange(event) {
     const select = inputSelect.value;
 
-    if (select.length <= 3 ) return console.error('Количество набранных символов должно быть больше 3');
-
-    newsService.getNewsByPhrase(select, (response) => {
-        const {totalResults, articles} = response;
-         // console.time();
-         uiService.clearContainer();
-         // console.timeEnd();
-
-         if (!totalResults) {
-             uiService.showEmptyMessage();
-         }
-         // console.time();
-         articles.forEach((article) => uiService.addArticle(article));
-         // console.timeEnd();    
-    })
-    if (!select) uiService.clearContainer();  
+    if (select.length <= 3 ) {
+        newsService.getTopHeadlinesNews(category, country, (response) => {
+            const { totalResults, articles } = response;
+    
+            // console.time();
+            uiService.clearContainer();
+            // console.timeEnd();
+    
+            // console.time();
+            articles.forEach((article) => uiService.addArticle(article));
+            // console.timeEnd();
+        });
+    } else {
+        newsService.getNewsByPhrase(select, (response) => {
+            const {totalResults, articles} = response;
+             // console.time();
+             uiService.clearContainer();
+             // console.timeEnd();
+    
+             if (!totalResults) {
+                 uiService.showEmptyMessage();
+             }
+             // console.time();
+             articles.forEach((article) => uiService.addArticle(article));
+             // console.timeEnd();    
+        })
+    }
 };
 
 // form.addEventListener('submit', (e) => {
@@ -63,6 +74,7 @@ function onInputChange(event) {
 countrySelect.addEventListener('change', onSelectChange);
 categorySelect.addEventListener('change', onSelectChange);
 inputSelect.addEventListener('keyup',onInputChange);
+
 
 
 
