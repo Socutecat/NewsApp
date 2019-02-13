@@ -11,11 +11,4 @@ class HttpClient {
         xhr.send();
         xhr.addEventListener('load', () => callback(JSON.parse(xhr.responseText)));
     }
-
-     /**
-     * 
-     * @param {String} url 
-     * @param {any} data
-     * @param {Function} callback
-     */
 }

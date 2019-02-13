@@ -61,7 +61,6 @@ function onInputChange(event) {
         })
     }
 };
-
 // form.addEventListener('submit', (e) => {
 //     e.preventDefault();
 
@@ -74,7 +73,4 @@ function onInputChange(event) {
 countrySelect.addEventListener('change', onSelectChange);
 categorySelect.addEventListener('change', onSelectChange);
 inputSelect.addEventListener('keyup',onInputChange);
-
-
-
 
